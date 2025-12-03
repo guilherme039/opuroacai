@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carteira de Cashback - O Puro Açaí</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scriptJs/tailwind-config.js"></script>
+    <link rel="stylesheet" href="Css/system.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold">💰 Carteira de Cashback</h1>
+                    <p class="text-secondary text-sm">Gerenciar Créditos dos Clientes</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="admin.html" class="bg-secondary text-primary px-4 py-2 rounded-lg font-bold hover:bg-yellow-500 transition-colors">
+                        📦 Pedidos
+                    </a>
+                    <a href="controle.html" class="bg-white text-primary px-4 py-2 rounded-lg font-bold hover:bg-gray-100 transition-colors">
+                        ⚙️ Cardápio
+                    </a>
+                    <a href="index_test.html" class="bg-white text-primary px-4 py-2 rounded-lg font-bold hover:bg-gray-100 transition-colors">
+                        🏠 Site
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-6">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-white rounded-xl p-6 card-shadow">
+                <div class="text-sm text-gray-600 mb-1">Total de Clientes</div>
+                <div id="total-customers" class="text-3xl font-bold text-primary">0</div>
+            </div>
+            <div class="bg-white rounded-xl p-6 card-shadow">
+                <div class="text-sm text-gray-600 mb-1">Cashback Total Acumulado</div>
+                <div id="total-cashback" class="text-3xl font-bold text-green-600">R$ 0,00</div>
+            </div>
+            <div class="bg-white rounded-xl p-6 card-shadow">
+                <div class="text-sm text-gray-600 mb-1">Cashback Utilizado</div>
+                <div id="used-cashback" class="text-3xl font-bold text-blue-600">R$ 0,00</div>
+            </div>
+        </div>
+
+        <!-- Search and Filters -->
+        <div class="bg-white rounded-xl p-4 card-shadow mb-6">
+            <div class="flex flex-wrap gap-4 items-center">
+                <div class="flex-1 min-w-[200px]">
+                    <input type="text" id="search-customer" placeholder="🔍 Buscar por nome ou telefone..." 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+                <button onclick="showAddCreditModal()" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                    ➕ Adicionar Crédito Manual
+                </button>
+                <button onclick="showCashbackSettings()" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-purple-800 transition-colors">
+                    ⚙️ Configurações
+                </button>
+            </div>
+        </div>
+
+        <!-- Customers List -->
+        <div id="customers-container" class="space-y-4">
+            <!-- Customers will be loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="text-center py-12 hidden">
+            <div class="text-6xl mb-4">💰</div>
+            <h3 class="text-xl font-bold text-gray-600 mb-2">Nenhum cliente com cashback</h3>
+            <p class="text-gray-500">Os clientes aparecerão aqui quando acumularem cashback</p>
+        </div>
+    </div>
+
+    <!-- Add Credit Modal -->
+    <div id="add-credit-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-md w-full">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold text-primary">➕ Adicionar Crédito Manual</h3>
+                <button onclick="closeAddCreditModal()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Telefone do Cliente</label>
+                    <input type="tel" id="manual-phone" placeholder="(13) 99999-9999" 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Nome do Cliente</label>
+                    <input type="text" id="manual-name" placeholder="Nome completo" 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Valor do Crédito</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2 text-gray-500">R$</span>
+                        <input type="number" id="manual-amount" step="0.01" placeholder="0.00" 
+                               class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Motivo</label>
+                    <input type="text" id="manual-reason" placeholder="Ex: Bônus de boas-vindas" 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                </div>
+                <button onclick="addManualCredit()" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-colors">
+                    Adicionar Crédito
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cashback Settings Modal -->
+    <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-md w-full">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold text-primary">⚙️ Configurações de Cashback</h3>
+                <button onclick="closeSettingsModal()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Percentual de Cashback (%)</label>
+                    <input type="number" id="cashback-percentage" step="0.1" value="2.0" 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                    <p class="text-xs text-gray-500 mt-1">Padrão: 2% do valor do pedido</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Valor Mínimo para Uso (R$)</label>
+                    <input type="number" id="min-usage" step="1" value="10" 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                    <p class="text-xs text-gray-500 mt-1">Cliente só pode usar quando atingir este valor</p>
+                </div>
+                <div>
+                    <label class="flex items-center cursor-pointer">
+                        <input type="checkbox" id="cashback-active" checked class="mr-2">
+                        <span class="text-sm font-medium text-gray-700">Sistema de Cashback Ativo</span>
+                    </label>
+                </div>
+                <button onclick="saveSettings()" class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-purple-800 transition-colors">
+                    Salvar Configurações
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scriptJs/carteira.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Cardápio - O Puro Açaí</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scriptJs/tailwind-config.js"></script>
+    <link rel="stylesheet" href="Css/system.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold">⚙️ Controle de Cardápio</h1>
+                    <p class="text-secondary text-sm">Gerenciar Preços, Estoque e Disponibilidade</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="carteira.html" class="bg-green-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-600 transition-colors">
+                        💰 Carteira
+                    </a>
+                    <a href="admin.html" class="bg-secondary text-primary px-4 py-2 rounded-lg font-bold hover:bg-yellow-500 transition-colors">
+                        📦 Pedidos
+                    </a>
+                    <a href="index_test.html" class="bg-white text-primary px-4 py-2 rounded-lg font-bold hover:bg-gray-100 transition-colors">
+                        🏠 Site
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-6">
+        <!-- Tabs -->
+        <div class="bg-white rounded-xl p-4 card-shadow mb-6">
+            <div class="flex flex-wrap gap-2">
+                <button onclick="showTab('tamanhos')" id="tab-tamanhos" class="tab-button active px-4 py-2 rounded-lg font-medium transition-colors">
+                    📏 Tamanhos Base
+                </button>
+                <button onclick="showTab('prontas')" id="tab-prontas" class="tab-button px-4 py-2 rounded-lg font-medium transition-colors">
+                    🍽️ Opções Prontas
+                </button>
+                <button onclick="showTab('complementos')" id="tab-complementos" class="tab-button px-4 py-2 rounded-lg font-medium transition-colors">
+                    🍓 Complementos
+                </button>
+                <button onclick="showTab('combos')" id="tab-combos" class="tab-button px-4 py-2 rounded-lg font-medium transition-colors">
+                    🍧 Combos
+                </button>
+            </div>
+        </div>
+
+        <!-- Tamanhos Base Tab -->
+        <div id="content-tamanhos" class="tab-content">
+            <div class="bg-white rounded-xl p-6 card-shadow mb-6">
+                <h2 class="text-xl font-bold text-primary mb-4">📏 Tamanhos Base (Tigela, Copo, Batido)</h2>
+                <div id="tamanhos-list" class="space-y-4">
+                    <!-- Will be populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Opções Prontas Tab -->
+        <div id="content-prontas" class="tab-content hidden">
+            <div class="bg-white rounded-xl p-6 card-shadow mb-6">
+                <h2 class="text-xl font-bold text-primary mb-4">🍽️ Opções Prontas</h2>
+                <div id="prontas-list" class="space-y-4">
+                    <!-- Will be populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Complementos Tab -->
+        <div id="content-complementos" class="tab-content hidden">
+            <div class="bg-white rounded-xl p-6 card-shadow mb-6">
+                <h2 class="text-xl font-bold text-primary mb-4">🍓 Complementos e Adicionais</h2>
+                <div id="complementos-list" class="space-y-4">
+                    <!-- Will be populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Combos Tab -->
+        <div id="content-combos" class="tab-content hidden">
+            <div class="bg-white rounded-xl p-6 card-shadow mb-6">
+                <h2 class="text-xl font-bold text-primary mb-4">🍧 Combos Promocionais</h2>
+                <div id="combos-list" class="space-y-4">
+                    <!-- Will be populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="bg-white rounded-xl p-6 card-shadow">
+            <div class="flex flex-wrap gap-4">
+                <button onclick="saveAllChanges()" class="flex-1 bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 transition-colors">
+                    💾 Salvar Todas as Alterações
+                </button>
+                <button onclick="resetToDefaults()" class="bg-red-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-600 transition-colors">
+                    🔄 Restaurar Padrões
+                </button>
+                <button onclick="exportData()" class="bg-blue-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-600 transition-colors">
+                    📥 Exportar Dados
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 font-medium hidden">
+        Alterações salvas com sucesso!
+    </div>
+
+    <script src="scriptJs/controle.js"></script>
+</body>
+</html>

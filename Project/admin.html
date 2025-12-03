@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - O Puro Açaí</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scriptJs/tailwind-config.js"></script>
+    <link rel="stylesheet" href="Css/system.css">
+</head>
+
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold">🛒 Painel de Pedidos</h1>
+                    <p class="text-secondary text-sm">O Puro Açaí - Administração</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="carteira.html"
+                        class="bg-green-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-600 transition-colors">
+                        💰 Carteira
+                    </a>
+                    <a href="controle.html"
+                        class="bg-secondary text-primary px-4 py-2 rounded-lg font-bold hover:bg-yellow-500 transition-colors">
+                        ⚙️ Cardápio
+                    </a>
+                    <a href="index_test.html"
+                        class="bg-white text-primary px-4 py-2 rounded-lg font-bold hover:bg-gray-100 transition-colors">
+                        🏠 Site
+                    </a>
+                </div>
+                <div class="text-right">
+                    <div class="text-sm opacity-90">Total de Pedidos</div>
+                    <div id="total-orders" class="text-3xl font-bold">0</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filters -->
+    <div class="container mx-auto px-4 py-6">
+        <div class="bg-white rounded-xl p-4 card-shadow mb-6">
+            <div class="flex flex-wrap gap-4 items-center">
+                <div class="flex-1 min-w-[200px]">
+                    <input type="text" id="search-input" placeholder="🔍 Buscar por nome, telefone ou pedido..."
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+                <div>
+                    <select id="status-filter"
+                        class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                        <option value="all">Todos os Status</option>
+                        <option value="pending">📦 Recebido</option>
+                        <option value="preparing">👨‍🍳 Preparando</option>
+                        <option value="out_for_delivery">🛵 Saiu para Entrega</option>
+                        <option value="ready_for_pickup">✅ Pronto para Retirada</option>
+                        <option value="completed">🎉 Finalizado</option>
+                        <option value="cancelled">❌ Cancelado</option>
+                    </select>
+                </div>
+                <button onclick="clearAllOrders()"
+                    class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                    🗑️ Limpar Todos
+                </button>
+            </div>
+        </div>
+
+        <!-- Orders List -->
+        <div id="orders-container" class="space-y-4">
+            <!-- Orders will be loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="text-center py-12 hidden">
+            <div class="text-6xl mb-4">📦</div>
+            <h3 class="text-xl font-bold text-gray-600 mb-2">Nenhum pedido encontrado</h3>
+            <p class="text-gray-500">Os pedidos aparecerão aqui quando forem realizados</p>
+        </div>
+    </div>
+
+    <script src="scriptJs/pix-payment.js"></script>
+    <script src="scriptJs/admin.js"></script>
+</body>
+
+</html>

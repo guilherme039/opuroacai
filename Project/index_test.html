@@ -1,0 +1,709 @@
+﻿<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O Puro Açaí - Açaí do Seu Jeito!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="scriptJs/tailwind-config.js"></script>
+  <link rel="stylesheet" href="Css/system.css">
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-gray-50 font-sans">
+  <div class="min-h-full"><!-- Header -->
+   <header class="gradient-bg text-white sticky top-0 z-50">
+    <div class="max-w-md mx-auto px-4 py-6">
+     <div class="relative">
+      <div class="text-center">
+       <h1 class="text-2xl font-bold">O PURO AÇAÍ</h1>
+       <p class="text-secondary text-sm font-medium">AÇAÍ DO SEU JEITO!</p>
+      </div>
+      <div class="absolute right-0 top-0">
+       <a href="admin.html" class="bg-secondary text-primary px-3 py-2 rounded-lg text-sm font-bold hover:bg-yellow-500 transition-colors">
+        🛒 Admin
+       </a>
+      </div>
+     </div>
+    </div>
+   </header><!-- Top Menu -->
+   <div id="top-menu" class="sticky top-20 left-0 right-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+    <div class="max-w-md mx-auto px-4">
+     <div class="flex justify-around py-3"><button onclick="scrollToSection('mais-pedidos')" class="flex flex-col items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition-colors"> <span class="text-lg">⭐</span> <span class="text-xs font-medium text-primary">Mais Pedidos</span> </button> <button onclick="scrollToSection('tigela')" class="flex flex-col items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition-colors"> <span class="text-lg">🥄</span> <span class="text-xs font-medium text-primary">Tigela</span> </button> <button onclick="scrollToSection('copo')" class="flex flex-col items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition-colors"> <span class="text-lg">🥤</span> <span class="text-xs font-medium text-primary">Copo</span> </button> <button onclick="scrollToSection('batido')" class="flex flex-col items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition-colors"> <span class="text-lg">🥤</span> <span class="text-xs font-medium text-primary">Batido</span> </button> <button onclick="scrollToSection('opcoes-prontas')" class="flex flex-col items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition-colors"> <span class="text-lg">🍽️</span> <span class="text-xs font-medium text-primary">Opções</span> </button> <button onclick="scrollToSection('combos')" class="flex flex-col items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition-colors"> <span class="text-lg">🍧</span> <span class="text-xs font-medium text-primary">Combos</span> </button>
+     </div>
+    </div>
+   </div><!-- Main Content -->
+   <main class="max-w-md mx-auto px-4 pb-32 pt-6"><!-- Promoções Section -->
+    <div class="mb-8">
+     <h2 class="text-xl font-bold text-primary mb-4 px-2">🔥 PROMOÇÕES DA SEMANA</h2>
+     <div class="space-y-4 px-2"><!-- Segunda - Dobradinha do Açaí -->
+      <div class="bg-gradient-to-r from-primary to-purple-700 text-white rounded-xl p-4 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openPromoModal('segunda')">
+       <div class="flex items-center justify-between">
+        <div>
+         <h3 class="font-bold text-lg">🔥 SEGUNDA - Dobradinha do Açaí</h3>
+         <p class="text-sm opacity-90">Compre 1 opção pronta (500ml) e leve a segunda com 50% OFF!</p>
+         <div class="mt-2 text-xs opacity-75">
+          👆 Clique para ativar a promoção
+         </div>
+        </div>
+        <div class="text-right">
+         <div id="segunda-status" class="text-xs opacity-75">
+          TODA
+         </div>
+         <div class="font-bold">
+          SEGUNDA
+         </div>
+        </div>
+       </div>
+      </div><!-- Terça da Família -->
+      <div class="bg-gradient-to-r from-primary to-purple-700 text-white rounded-xl p-4 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openPromoModal('terca')">
+       <div class="flex items-center justify-between">
+        <div>
+         <h3 class="font-bold text-lg">👨‍👩‍👧‍👦 TERÇA DA FAMÍLIA</h3>
+         <p class="text-sm opacity-90">A cada 3 combos 500ml, leve +1 Tradicional GRÁTIS!</p>
+         <div class="mt-2 text-xs opacity-75">
+          👆 Clique para ativar a promoção
+         </div>
+        </div>
+        <div class="text-right">
+         <div id="terca-status" class="text-xs opacity-75">
+          TODA
+         </div>
+         <div class="font-bold">
+          TERÇA
+         </div>
+        </div>
+       </div>
+      </div><!-- Domingo do Batido -->
+      <div class="bg-gradient-to-r from-primary to-purple-700 text-white rounded-xl p-4 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openPromoModal('domingo')">
+       <div class="flex items-center justify-between">
+        <div>
+         <h3 class="font-bold text-lg">🥤 DOMINGO DO BATIDO</h3>
+         <p class="text-sm opacity-90">2 Batidos por R$ 25,00 (em vez de R$ 30,00)</p>
+         <div class="mt-2 text-xs opacity-75">
+          👆 Clique para ativar a promoção
+         </div>
+        </div>
+        <div class="text-right">
+         <div id="domingo-status" class="text-xs opacity-75">
+          TODO
+         </div>
+         <div class="font-bold">
+          DOMINGO
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- Destaques Section -->
+    <div class="mb-8">
+     <h2 class="text-xl font-bold text-primary mb-4 px-2">⭐ DESTAQUES</h2>
+     <div class="overflow-x-auto pb-4">
+      <div class="flex space-x-4 px-2" style="width: max-content;"><!-- Açaí Batido -->
+       <div class="bg-white rounded-xl p-4 card-shadow cursor-pointer hover:shadow-lg transition-shadow flex-shrink-0 w-44" onclick="openHighlightModal('batido-especial')">
+        <div class="w-full h-24 bg-gradient-to-br from-green-100 to-green-200 rounded-lg mb-3 flex items-center justify-center">
+         <div class="text-3xl">
+          🥤
+         </div>
+        </div>
+        <h3 class="font-bold text-primary text-sm mb-2">Batido</h3>
+        <div class="text-primary font-bold text-sm">
+         A partir de R$ 13,00
+        </div>
+       </div><!-- Açaí Tradicional -->
+       <div class="bg-white rounded-xl p-4 card-shadow cursor-pointer hover:shadow-lg transition-shadow flex-shrink-0 w-44" onclick="openHighlightModal('tradicional')">
+        <div class="w-full h-24 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg mb-3 flex items-center justify-center">
+         <div class="text-3xl">
+          🍓
+         </div>
+        </div>
+        <h3 class="font-bold text-primary text-sm mb-2">Tradicional</h3>
+        <div class="text-primary font-bold text-sm">
+         A partir de R$ 23,00
+        </div>
+       </div><!-- Açaí Especial -->
+       <div class="bg-white rounded-xl p-4 card-shadow cursor-pointer hover:shadow-lg transition-shadow flex-shrink-0 w-44" onclick="openHighlightModal('especial')">
+        <div class="w-full h-24 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-lg mb-3 flex items-center justify-center">
+         <div class="text-3xl">
+          🥜
+         </div>
+        </div>
+        <h3 class="font-bold text-primary text-sm mb-2">Especial</h3>
+        <div class="text-primary font-bold text-sm">
+         A partir de R$ 28,00
+        </div>
+       </div><!-- Açaí Kids -->
+       <div class="bg-white rounded-xl p-4 card-shadow cursor-pointer hover:shadow-lg transition-shadow flex-shrink-0 w-44" onclick="openHighlightModal('kids')">
+        <div class="w-full h-24 bg-gradient-to-br from-pink-100 to-pink-200 rounded-lg mb-3 flex items-center justify-center">
+         <div class="text-3xl">
+          🍭
+         </div>
+        </div>
+        <h3 class="font-bold text-primary text-sm mb-2">Kids</h3>
+        <div class="text-primary font-bold text-sm">
+         A partir de R$ 27,00
+        </div>
+       </div><!-- Açaí Premium -->
+       <div class="bg-white rounded-xl p-4 card-shadow cursor-pointer hover:shadow-lg transition-shadow flex-shrink-0 w-44" onclick="openHighlightModal('premium')">
+        <div class="w-full h-24 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg mb-3 flex items-center justify-center">
+         <div class="text-3xl">
+          👑
+         </div>
+        </div>
+        <h3 class="font-bold text-primary text-sm mb-2">Premium</h3>
+        <div class="text-primary font-bold text-sm">
+         A partir de R$ 38,00
+        </div>
+       </div><!-- Açaí Tropical -->
+       <div class="bg-white rounded-xl p-4 card-shadow cursor-pointer hover:shadow-lg transition-shadow flex-shrink-0 w-44" onclick="openHighlightModal('tropical')">
+        <div class="w-full h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg mb-3 flex items-center justify-center">
+         <div class="text-3xl">
+          🥥
+         </div>
+        </div>
+        <h3 class="font-bold text-primary text-sm mb-2">Tropical</h3>
+        <div class="text-primary font-bold text-sm">
+         A partir de R$ 30,00
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="space-y-8"><!-- Mais Pedidos Section -->
+     <div id="section-mais-pedidos">
+      <h2 class="text-xl font-bold text-primary mb-2 px-2">⭐ MAIS PEDIDOS</h2>
+      <p class="text-sm text-gray-600 mb-4 px-2">2 frutas + 2 complementos + 1 cobertura GRÁTIS! Adicione mais pagando apenas o extra.</p>
+      <div class="bg-white rounded-xl p-6 card-shadow">
+       <h3 class="text-lg font-bold text-primary mb-4 flex items-center">ESCOLHA O SEU TAMANHO</h3>
+       <div class="mb-4">
+        <p class="text-sm text-gray-700 text-center font-bold">Açaí + 2 frutas + 2 complementos + 1 cobertura inclusos</p>
+       </div>
+       <div class="space-y-3 mb-4"><label class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-secondary transition-colors" onclick="openMaisPedidosModal('350ml', 26)"> <span class="font-medium text-lg">350ml</span> <span class="text-primary font-bold text-xl">R$ 26,00</span> </label> <label class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-secondary transition-colors" onclick="openMaisPedidosModal('500ml', 29)"> <span class="font-medium text-lg">500ml</span> <span class="text-primary font-bold text-xl">R$ 29,00</span> </label> <label class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-secondary transition-colors" onclick="openMaisPedidosModal('700ml', 33)"> <span class="font-medium text-lg">700ml</span> <span class="text-primary font-bold text-xl">R$ 33,00</span> </label>
+       </div>
+      </div>
+     </div><!-- Açaí na Tigela Section -->
+     <div id="section-tigela">
+      <h2 class="text-xl font-bold text-primary mb-2 px-2">🥄 AÇAÍ NA TIGELA</h2>
+      <p class="text-sm text-gray-600 mb-4 px-2">Monte do seu jeito com os complementos que você mais gosta</p>
+      <div class="bg-white rounded-xl p-6 card-shadow">
+       <h3 class="text-lg font-bold text-primary mb-4 flex items-center">ESCOLHA O SEU TAMANHO</h3>
+       <div class="mb-4">
+        <p class="text-sm text-gray-700 text-center font-bold">Somente o açaí puro. Complementos à parte.</p>
+       </div>
+       <div class="space-y-3 mb-4"><label class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-secondary transition-colors" onclick="openComplementosModal('tigela', '350ml', 12)"> <span class="font-medium text-lg">350ml</span> <span class="text-primary font-bold text-xl">R$ 12,00</span> </label> <label class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-secondary transition-colors" onclick="openComplementosModal('tigela', '500ml', 14)"> <span class="font-medium text-lg">500ml</span> <span class="text-primary font-bold text-xl">R$ 14,00</span> </label> <label class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-secondary transition-colors" onclick="openComplementosModal('tigela', '750ml', 17)"> <span class="font-medium text-lg">750ml</span> <span class="text-primary font-bold text-xl">R$ 17,00</span> </label>
+       </div>
+      </div>
+     </div><!-- Açaí no Copo Section -->
+     <div id="section-copo">
+      <h2 class="text-xl font-bold text-primary mb-2 px-2">🥤 AÇAÍ NO COPO</h2>
+      <p class="text-sm text-gray-600 mb-4 px-2">Monte do seu jeito com os complementos que você mais gosta</p>
+      <div class="bg-white rounded-xl p-6 card-shadow">
+       <h3 class="text-lg font-bold text-primary mb-4 flex items-center">ESCOLHA O SEU TAMANHO</h3>
+       <div class="mb-4">
+        <p class="text-sm text-gray-700 text-center font-bold">Somente o açaí puro. Complementos à parte.</p>
+       </div>
+       <div class="space-y-3 mb-4"><label class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-secondary transition-colors" onclick="openComplementosModal('copo', '300ml', 12)"> <span class="font-medium text-lg">300ml</span> <span class="text-primary font-bold text-xl">R$ 12,00</span> </label> <label class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-secondary transition-colors" onclick="openComplementosModal('copo', '500ml', 14)"> <span class="font-medium text-lg">500ml</span> <span class="text-primary font-bold text-xl">R$ 14,00</span> </label> <label class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-secondary transition-colors" onclick="openComplementosModal('copo', '700ml', 17)"> <span class="font-medium text-lg">700ml</span> <span class="text-primary font-bold text-xl">R$ 17,00</span> </label>
+       </div>
+      </div>
+     </div><!-- Açaí Batido Section -->
+     <div id="section-batido">
+      <h2 class="text-xl font-bold text-primary mb-2 px-2">🥤 AÇAÍ BATIDO</h2>
+      <p class="text-sm text-gray-600 mb-4 px-2">Monte do seu jeito com os complementos que você mais gosta</p>
+      <div class="bg-white rounded-xl p-6 card-shadow">
+       <h3 class="text-lg font-bold text-primary mb-4 flex items-center">ESCOLHA O SEU TAMANHO</h3>
+       <div class="mb-4">
+        <p class="text-sm text-gray-700 text-center font-bold">Somente o açaí puro. Complementos à parte.</p>
+       </div>
+       <div class="space-y-3 mb-4"><label class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-secondary transition-colors" onclick="openComplementosModal('batido', '300ml', 9)"> <span class="font-medium text-lg">300ml</span> <span class="text-primary font-bold text-xl">R$ 9,00</span> </label> <label class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-secondary transition-colors" onclick="openComplementosModal('batido', '500ml', 11)"> <span class="font-medium text-lg">500ml</span> <span class="text-primary font-bold text-xl">R$ 11,00</span> </label>
+       </div>
+      </div>
+     </div><!-- Opções Prontas Section -->
+     <div id="section-opcoes-prontas">
+      <h2 class="text-xl font-bold text-primary mb-4 px-2">🍽️ OPÇÕES PRONTAS</h2>
+      <div class="space-y-4"><!-- Batido - R$ 15,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openReadyOptionModal('batido-ready')">
+        <div class="flex justify-between items-center">
+         <h3 class="text-lg font-bold text-primary">Batido</h3>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 15,00
+          </div>
+          <div class="text-sm text-gray-500">
+           500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Tradicional - R$ 25,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openReadyOptionModal('tradicional-ready')">
+        <div class="flex justify-between items-center">
+         <h3 class="text-lg font-bold text-primary">Tradicional</h3>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 25,00
+          </div>
+          <div class="text-sm text-gray-500">
+           500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Kids - R$ 29,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openReadyOptionModal('kids-ready')">
+        <div class="flex justify-between items-center">
+         <h3 class="text-lg font-bold text-primary">Kids</h3>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 29,00
+          </div>
+          <div class="text-sm text-gray-500">
+           500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Especial - R$ 30,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openReadyOptionModal('especial-ready')">
+        <div class="flex justify-between items-center">
+         <h3 class="text-lg font-bold text-primary">Especial</h3>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 30,00
+          </div>
+          <div class="text-sm text-gray-500">
+           500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Tropical - R$ 32,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openReadyOptionModal('tropical-ready')">
+        <div class="flex justify-between items-center">
+         <h3 class="text-lg font-bold text-primary">Tropical</h3>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 32,00
+          </div>
+          <div class="text-sm text-gray-500">
+           500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Premium - R$ 40,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openReadyOptionModal('premium-ready')">
+        <div class="flex justify-between items-center">
+         <h3 class="text-lg font-bold text-primary">Premium</h3>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 40,00
+          </div>
+          <div class="text-sm text-gray-500">
+           500ml
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Combos Section -->
+     <div id="section-combos">
+      <h2 class="text-xl font-bold text-primary mb-4 px-2">🍧 COMBOS PROMOCIONAIS</h2>
+      <div class="space-y-4"><!-- Combo Leveza - R$ 42,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openComboModal('leveza')">
+        <div class="flex justify-between items-start">
+         <div>
+          <h3 class="text-lg font-bold text-primary">Combo Leveza</h3>
+          <p class="text-sm text-gray-600">(Batido + Tradicional)</p>
+         </div>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 42,00
+          </div>
+          <div class="text-sm text-gray-500">
+           2x 500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Combo Energia Boa - R$ 45,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openComboModal('energia-boa')">
+        <div class="flex justify-between items-start">
+         <div>
+          <h3 class="text-lg font-bold text-primary">Combo Energia Boa</h3>
+          <p class="text-sm text-gray-600">(Batido + Tropical)</p>
+         </div>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 45,00
+          </div>
+          <div class="text-sm text-gray-500">
+           2x 500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Combo Clássico - R$ 46,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openComboModal('classico')">
+        <div class="flex justify-between items-start">
+         <div>
+          <h3 class="text-lg font-bold text-primary">Combo Clássico</h3>
+          <p class="text-sm text-gray-600">(2 Tradicionais)</p>
+         </div>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 46,00
+          </div>
+          <div class="text-sm text-gray-500">
+           2x 500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Combo Doce Encontro - R$ 48,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openComboModal('doce-encontro')">
+        <div class="flex justify-between items-start">
+         <div>
+          <h3 class="text-lg font-bold text-primary">Combo Doce Encontro</h3>
+          <p class="text-sm text-gray-600">(Tradicional + Especial)</p>
+         </div>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 48,00
+          </div>
+          <div class="text-sm text-gray-500">
+           2x 500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Combo Sabor de Verão - R$ 50,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openComboModal('sabor-verao')">
+        <div class="flex justify-between items-start">
+         <div>
+          <h3 class="text-lg font-bold text-primary">Combo Sabor de Verão</h3>
+          <p class="text-sm text-gray-600">(Tropical + Kids)</p>
+         </div>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 50,00
+          </div>
+          <div class="text-sm text-gray-500">
+           2x 500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Combo Gourmet - R$ 56,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openComboModal('gourmet')">
+        <div class="flex justify-between items-start">
+         <div>
+          <h3 class="text-lg font-bold text-primary">Combo Gourmet</h3>
+          <p class="text-sm text-gray-600">(2 Especiais)</p>
+         </div>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 56,00
+          </div>
+          <div class="text-sm text-gray-500">
+           2x 500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Combo Realeza - R$ 58,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openComboModal('realeza')">
+        <div class="flex justify-between items-start">
+         <div>
+          <h3 class="text-lg font-bold text-primary">Combo Realeza</h3>
+          <p class="text-sm text-gray-600">(Premium + Tradicional)</p>
+         </div>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 58,00
+          </div>
+          <div class="text-sm text-gray-500">
+           2x 500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Combo Alegria - R$ 60,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openComboModal('alegria')">
+        <div class="flex justify-between items-start">
+         <div>
+          <h3 class="text-lg font-bold text-primary">Combo Alegria</h3>
+          <p class="text-sm text-gray-600">(Premium + Kids)</p>
+         </div>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 60,00
+          </div>
+          <div class="text-sm text-gray-500">
+           2x 500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Combo Rei do Sabor - R$ 65,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openComboModal('rei-sabor')">
+        <div class="flex justify-between items-start">
+         <div>
+          <h3 class="text-lg font-bold text-primary">Combo Rei do Sabor</h3>
+          <p class="text-sm text-gray-600">(Premium + Tropical)</p>
+         </div>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 65,00
+          </div>
+          <div class="text-sm text-gray-500">
+           2x 500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Combo Três Sabores - R$ 74,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openComboModal('tres-sabores')">
+        <div class="flex justify-between items-start">
+         <div>
+          <h3 class="text-lg font-bold text-primary">Combo Três Sabores</h3>
+          <p class="text-sm text-gray-600">(Tradicional + Especial + Kids)</p>
+         </div>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 74,00
+          </div>
+          <div class="text-sm text-gray-500">
+           3x 500ml
+          </div>
+         </div>
+        </div>
+       </div><!-- Combo Topzera - R$ 88,00 -->
+       <div class="bg-white rounded-xl p-6 card-shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="openComboModal('topzera')">
+        <div class="flex justify-between items-start">
+         <div>
+          <h3 class="text-lg font-bold text-primary">Combo Topzera</h3>
+          <p class="text-sm text-gray-600">(Premium + Especial + Tropical)</p>
+         </div>
+         <div class="text-right">
+          <div class="text-primary font-bold text-lg">
+           R$ 88,00
+          </div>
+          <div class="text-sm text-gray-500">
+           3x 500ml
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </main><!-- Fixed Cart Button -->
+   <div id="fixed-cart-button" class="fixed bottom-6 left-6 right-6 z-50 hidden">
+    <div class="max-w-md mx-auto"><!-- Active Promo Indicator -->
+     <div id="active-promo-indicator" class="bg-green-500 text-white rounded-xl p-3 mb-3 shadow-lg hidden">
+      <div class="flex items-center justify-between">
+       <div class="flex items-center"><span class="text-lg mr-2">🎉</span>
+        <div>
+         <div class="font-bold text-sm" id="active-promo-name">
+          Promoção Ativa
+         </div>
+         <div class="text-xs opacity-90" id="active-promo-description">
+          Desconto aplicado automaticamente
+         </div>
+        </div>
+       </div><button onclick="deactivatePromo()" class="text-white hover:text-red-200 font-bold text-lg">×</button>
+      </div>
+     </div>
+     <div class="bg-primary text-white rounded-2xl p-6 shadow-lg">
+      <div class="flex items-center justify-between">
+       <div>
+        <div class="text-lg opacity-90">
+         Total
+        </div>
+        <div id="cart-total" class="text-2xl font-bold">
+         R$ 0,00
+        </div>
+        <div id="promo-savings" class="text-sm text-green-300 hidden">
+         Economia: R$ 0,00
+        </div>
+       </div><button onclick="openCart()" id="cart-button" class="bg-secondary hover:bg-yellow-500 text-primary font-bold py-3 px-6 rounded-lg transition-colors"> Ver Sacola </button>
+      </div>
+     </div>
+    </div>
+   </div><!-- Highlight Modal -->
+   <div id="highlight-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+    <div class="flex items-end justify-center min-h-full">
+     <div id="highlight-modal-content" class="bg-white rounded-t-3xl w-full max-w-md transform transition-transform duration-300 translate-y-full"><!-- Modal Header -->
+      <div class="gradient-bg text-white p-6 rounded-t-3xl">
+       <div class="flex items-center justify-between">
+        <div>
+         <h2 class="text-xl font-bold" id="highlight-modal-title">Açaí Especial</h2>
+         <p class="text-secondary text-sm" id="highlight-modal-subtitle">Tigela 500ml</p>
+        </div><button onclick="closeHighlightModal()" class="text-white hover:text-secondary">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+         </svg></button>
+       </div>
+      </div><!-- Modal Body -->
+      <div class="max-h-96 overflow-y-auto p-6 space-y-6" id="highlight-modal-body"><!-- Content will be populated dynamically -->
+      </div><!-- Modal Footer -->
+      <div class="p-6 border-t border-gray-200 bg-white rounded-b-3xl"><button onclick="addHighlightToCart()" id="highlight-add-button" class="w-full bg-secondary hover:bg-yellow-500 text-primary font-bold py-4 px-6 rounded-xl transition-colors"> <span id="highlight-add-text">Adicionar - R$ 0,00</span> </button>
+      </div>
+     </div>
+    </div>
+   </div><!-- Complementos Modal -->
+   <div id="complementos-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+    <div class="flex items-end justify-center min-h-full">
+     <div id="modal-content" class="bg-white rounded-t-3xl w-full max-w-md transform transition-transform duration-300 translate-y-full"><!-- Modal Header -->
+      <div class="gradient-bg text-white p-6 rounded-t-3xl">
+       <div class="flex items-center justify-between">
+        <div>
+         <h2 class="text-xl font-bold" id="modal-title">Personalize seu Açaí</h2>
+         <p class="text-secondary text-sm" id="modal-subtitle">Tamanho selecionado</p>
+        </div><button onclick="closeComplementosModal()" class="text-white hover:text-secondary">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+         </svg></button>
+       </div>
+      </div><!-- Modal Body -->
+      <div class="max-h-96 overflow-y-auto p-6 space-y-6" id="modal-body"><!-- Content will be populated dynamically -->
+      </div><!-- Modal Footer -->
+      <div class="p-6 border-t border-gray-200 bg-white rounded-b-3xl"><button onclick="addModalToCart()" id="modal-add-button" class="w-full bg-secondary hover:bg-yellow-500 text-primary font-bold py-4 px-6 rounded-xl transition-colors"> <span id="modal-add-text">Adicionar - R$ 0,00</span> </button>
+      </div>
+     </div>
+    </div>
+   </div><!-- Cart Page -->
+   <div id="cart-page" class="fixed inset-0 bg-gray-50 z-50 hidden">
+    <div class="h-full flex flex-col"><!-- Cart Header -->
+     <header class="gradient-bg text-white">
+      <div class="max-w-md mx-auto px-4 py-6">
+       <div class="flex items-center"><button onclick="closeCart()" class="mr-4 text-white hover:text-secondary">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+         </svg></button>
+        <h1 class="text-xl font-bold">Minha Sacola</h1>
+       </div>
+      </div>
+     </header><!-- Cart Content -->
+     <main class="flex-1 max-w-md mx-auto w-full px-4 py-6 overflow-y-auto">
+      <div id="cart-items" class="space-y-4 mb-6"><!-- Cart items will be populated here -->
+      </div>
+      <div id="empty-cart" class="text-center py-12 hidden">
+       <div class="text-6xl mb-4">
+        🛒
+       </div>
+       <h3 class="text-xl font-bold text-gray-600 mb-2">Sua sacola está vazia</h3>
+       <p class="text-gray-500 mb-6">Adicione alguns itens deliciosos!</p><button onclick="closeCart()" class="bg-primary text-white px-6 py-3 rounded-lg font-medium"> Continuar Comprando </button>
+      </div>
+     </main><!-- Cart Footer -->
+     <footer class="bg-white border-t border-gray-200 p-4">
+      <div class="max-w-md mx-auto">
+       <div class="flex items-center justify-between mb-4"><span class="text-lg font-bold text-primary">Total:</span> <span id="cart-page-total" class="text-2xl font-bold text-primary">R$ 0,00</span>
+       </div><button onclick="openCheckoutForm()" id="checkout-button" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-xl transition-colors flex items-center justify-center">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+        </svg><span id="checkout-button-text">Finalizar Pedido</span> </button>
+      </div>
+     </footer>
+    </div>
+   </div><!-- Promo Modal -->
+   <div id="promo-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+    <div class="flex items-end justify-center min-h-full">
+     <div id="promo-modal-content" class="bg-white rounded-t-3xl w-full max-w-md transform transition-transform duration-300 translate-y-full"><!-- Modal Header -->
+      <div id="promo-modal-header" class="gradient-bg text-white p-6 rounded-t-3xl">
+       <div class="flex items-center justify-between">
+        <div>
+         <h2 class="text-xl font-bold" id="promo-modal-title">Promoção</h2>
+         <p class="text-secondary text-sm" id="promo-modal-subtitle">Ative sua promoção</p>
+        </div><button onclick="closePromoModal()" class="text-white hover:text-secondary">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+         </svg></button>
+       </div>
+      </div><!-- Modal Body -->
+      <div class="max-h-96 overflow-y-auto p-6 space-y-6" id="promo-modal-body"><!-- Content will be populated dynamically -->
+      </div><!-- Modal Footer -->
+      <div class="p-6 border-t border-gray-200 bg-white rounded-b-3xl"><button onclick="addPromoToCart()" id="promo-activate-button" class="w-full bg-secondary hover:bg-yellow-500 text-primary font-bold py-4 px-6 rounded-xl transition-colors"> <span id="promo-activate-text">Adicionar ao Carrinho</span> </button>
+      </div>
+     </div>
+    </div>
+   </div><!-- Checkout Form Page -->
+   <div id="checkout-page" class="fixed inset-0 bg-gray-50 z-50 hidden">
+    <div class="h-full flex flex-col"><!-- Checkout Header -->
+     <header class="gradient-bg text-white">
+      <div class="max-w-md mx-auto px-4 py-6">
+       <div class="flex items-center"><button onclick="closeCheckoutForm()" class="mr-4 text-white hover:text-secondary">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+         </svg></button>
+        <h1 class="text-xl font-bold">Finalizar Pedido</h1>
+       </div>
+      </div>
+     </header><!-- Checkout Content -->
+     <main class="flex-1 max-w-md mx-auto w-full px-4 py-6 overflow-y-auto">
+      <form id="checkout-form" class="space-y-6"><!-- Dados Pessoais -->
+       <div class="bg-white rounded-xl p-6 card-shadow">
+        <h3 class="text-lg font-bold text-primary mb-4">📋 Dados Pessoais</h3>
+        <div class="space-y-4">
+         <div><label for="customer-phone" class="block text-sm font-medium text-gray-700 mb-2">WhatsApp *</label> <input type="tel" id="customer-phone" name="customerPhone" required placeholder="(13) 99999-9999" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" onblur="lookupCustomer()">
+          <div id="customer-found" class="hidden mt-2 p-3 bg-green-50 border border-green-200 rounded-lg">
+           <div class="flex items-center text-green-700">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg><span class="font-medium">Cliente encontrado! Dados preenchidos automaticamente.</span>
+           </div>
+          </div>
+         </div>
+         <div><label for="customer-name" class="block text-sm font-medium text-gray-700 mb-2">Nome Completo *</label> <input type="text" id="customer-name" name="customerName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+         </div>
+        </div>
+       </div><!-- Tipo de Entrega -->
+       <div class="bg-white rounded-xl p-6 card-shadow">
+        <h3 class="text-lg font-bold text-primary mb-4">🚚 Tipo de Entrega</h3>
+        <div><label for="delivery-type-select" class="block text-sm font-medium text-gray-700 mb-2">Como você quer receber seu pedido? *</label> <select id="delivery-type-select" name="deliveryType" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" onchange="toggleDeliveryFields()"> <option value="">Selecione o tipo de entrega...</option> <option value="delivery">🚚 Delivery - Entrega no seu endereço</option> <option value="pickup">🏪 Retirada no Local - Buscar na loja (Grátis)</option> </select>
+        </div>
+       </div><!-- Seleção de Bairro -->
+       <div id="neighborhood-list" class="bg-white rounded-xl p-6 card-shadow hidden">
+        <h3 class="text-lg font-bold text-primary mb-4">📍 Selecione seu Bairro</h3>
+        <div><label for="neighborhood-select" class="block text-sm font-medium text-gray-700 mb-2">Bairro *</label> <select id="neighborhood-select" name="neighborhood" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" onchange="updateDeliveryFee()"> <option value="">Selecione seu bairro...</option> <optgroup label="🆓 Entrega Grátis"> <option value="Vila Antártica-0">Vila Antártica - Grátis</option> <option value="São Jorge-0">São Jorge - Grátis</option> </optgroup> <optgroup label="💰 R$ 3,00"> <option value="Quietude-3">Quietude - R$ 3,00</option> <option value="Tupiry-3">Tupiry - R$ 3,00</option> <option value="Tupi-3">Tupi - R$ 3,00</option> </optgroup> <optgroup label="💰 R$ 4,00"> <option value="Jardim Glória-4">Jardim Glória - R$ 4,00</option> <option value="Aviação-4">Aviação - R$ 4,00</option> <option value="Vila Sônia-4">Vila Sônia - R$ 4,00</option> <option value="Vila Assunção-4">Vila Assunção - R$ 4,00</option> <option value="Jardim Guaramar-4">Jardim Guaramar - R$ 4,00</option> </optgroup> <optgroup label="💰 R$ 5,00"> <option value="Ocian-5">Ocian - R$ 5,00</option> <option value="Guilhermina-5">Guilhermina - R$ 5,00</option> <option value="Tude Bastos-5">Tude Bastos - R$ 5,00</option> </optgroup> <optgroup label="💰 R$ 6,00"> <option value="Mirim-6">Mirim - R$ 6,00</option> <option value="Boqueirão-6">Boqueirão - R$ 6,00</option> </optgroup> <optgroup label="💰 R$ 7,00"> <option value="Canto do Forte-7">Canto do Forte - R$ 7,00</option> </optgroup> </select>
+        </div>
+       </div><!-- Endereço de Entrega -->
+       <div id="delivery-address" class="bg-white rounded-xl p-6 card-shadow hidden">
+        <h3 class="text-lg font-bold text-primary mb-4">📍 Endereço de Entrega</h3>
+        <div class="space-y-4">
+         <div><label for="address-street" class="block text-sm font-medium text-gray-700 mb-2">Rua/Avenida *</label> <input type="text" id="address-street" name="addressStreet" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+         </div>
+         <div class="grid grid-cols-2 gap-4">
+          <div><label for="address-number" class="block text-sm font-medium text-gray-700 mb-2">Número *</label> <input type="text" id="address-number" name="addressNumber" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+          </div>
+          <div><label for="address-complement" class="block text-sm font-medium text-gray-700 mb-2">Complemento</label> <input type="text" id="address-complement" name="addressComplement" placeholder="Apto, Bloco..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+          </div>
+         </div>
+         <div><label for="address-reference" class="block text-sm font-medium text-gray-700 mb-2">Ponto de Referência</label> <input type="text" id="address-reference" name="addressReference" placeholder="Próximo ao..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+         </div>
+        </div>
+       </div><!-- Forma de Pagamento -->
+       <div class="bg-white rounded-xl p-6 card-shadow">
+        <h3 class="text-lg font-bold text-primary mb-4">💳 Forma de Pagamento</h3>
+        <div><label for="payment-method" class="block text-sm font-medium text-gray-700 mb-2">Selecione a forma de pagamento *</label> <select id="payment-method" name="paymentMethod" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" onchange="toggleChangeField()"> <option value="">Escolha como pagar...</option> <option value="money">Dinheiro</option> <option value="pix">PIX (com desconto) 💰</option> <option value="card">Cartão (Débito/Crédito)</option> </select>
+        </div>
+       </div><!-- Troco -->
+       <div id="change-field" class="bg-white rounded-xl p-6 card-shadow hidden">
+        <h3 class="text-lg font-bold text-primary mb-4">💰 Troco</h3>
+        <div><label for="change-amount" class="block text-sm font-medium text-gray-700 mb-2">Troco para quanto?</label> <input type="number" id="change-amount" name="changeAmount" placeholder="Ex: 50.00" step="0.01" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+        </div>
+       </div><!-- Descartáveis -->
+       <div class="bg-white rounded-xl p-6 card-shadow">
+        <h3 class="text-lg font-bold text-primary mb-4">🥄 Descartáveis</h3>
+        <div><label for="disposables" class="block text-sm font-medium text-gray-700 mb-2">Precisa de descartáveis?</label> <select id="disposables" name="disposables" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"> <option value="no">Não preciso</option> <option value="yes">Sim, preciso de descartáveis</option> </select>
+        </div>
+       </div><!-- Observações -->
+       <div class="bg-white rounded-xl p-6 card-shadow">
+        <h3 class="text-lg font-bold text-primary mb-4">📝 Observações</h3>
+        <div><label for="order-notes" class="block text-sm font-medium text-gray-700 mb-2">Alguma observação especial?</label> <textarea id="order-notes" name="orderNotes" rows="3" placeholder="Ex: Sem açúcar, caprichar no morango..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"></textarea>
+        </div>
+       </div>
+      </form>
+     </main><!-- Checkout Footer -->
+     <footer class="bg-white border-t border-gray-200 p-4">
+      <div class="max-w-md mx-auto">
+       <div class="flex items-center justify-between mb-2"><span class="text-lg font-bold text-primary">Total:</span> <span id="checkout-total" class="text-2xl font-bold text-primary">R$ 0,00</span>
+       </div><!-- Resumo dos valores -->
+       <div id="checkout-summary" class="text-xs text-gray-600 mb-4 space-y-1">
+        <div class="flex justify-between"><span>Subtotal produtos:</span> <span id="checkout-subtotal">R$ 0,00</span>
+        </div>
+        <div id="checkout-delivery-fee" class="flex justify-between hidden"><span>Taxa de entrega:</span> <span id="checkout-delivery-amount">R$ 0,00</span>
+        </div>
+        <div id="checkout-pix-discount" class="flex justify-between hidden text-green-600"><span>Desconto PIX:</span> <span id="checkout-discount-amount">-R$ 0,00</span>
+        </div>
+       </div><button onclick="submitOrder()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-xl transition-colors flex items-center justify-center">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+        </svg> Enviar Pedido </button>
+      </div>
+     </footer>
+    </div>
+   </div>
+  </div>
+  <script src="scriptJs/pix-payment.js"></script>
+  <script src="scriptJs/script.js"></script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99c86c3ca4428dd8',t:'MTc2MjgwNzgzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
