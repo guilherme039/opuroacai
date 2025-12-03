@@ -2,6 +2,17 @@
 
 Sistema completo de pedidos online para açaiteria com painel administrativo.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/seu-usuario/seu-repositorio)
+
+## 🚀 Deploy Rápido
+
+### Vercel (Recomendado)
+1. Clique no botão "Deploy with Vercel" acima
+2. Configure as variáveis de ambiente (opcional para PIX real)
+3. Deploy automático em segundos!
+
+📖 **Guia Completo:** Ver [DEPLOY_VERCEL.md](DEPLOY_VERCEL.md)
+
 ## 📋 Funcionalidades
 
 ### Para Clientes (index_test.html)
@@ -101,6 +112,39 @@ O sistema é totalmente responsivo e funciona em:
 - [ ] Relatórios de vendas
 - [ ] Impressão de pedidos
 - [ ] Integração com sistema de pagamento
+
+## 🌐 Deploy na Vercel
+
+### Configuração Necessária
+
+1. **Criar conta na Vercel:** https://vercel.com
+2. **Importar projeto do GitHub**
+3. **Configurar variáveis de ambiente** (ver `.env.example`)
+4. **Deploy automático!**
+
+### Variáveis de Ambiente (Opcional)
+
+Para usar PIX real com PagSeguro, configure:
+- `PAGSEGURO_EMAIL`
+- `PAGSEGURO_TOKEN`
+- `PIX_KEY`
+- `PIX_RECEIVER_NAME`
+
+Ver arquivo `.env.example` para lista completa.
+
+### Arquivos de Configuração
+
+- ✅ `vercel.json` - Configuração da Vercel
+- ✅ `.env.example` - Exemplo de variáveis
+- ✅ `.gitignore` - Arquivos ignorados
+- ✅ `index.html` - Redirecionamento automático
+
+## 📚 Documentação Completa
+
+- 📖 [DEPLOY_VERCEL.md](DEPLOY_VERCEL.md) - Guia completo de deploy
+- 📖 [README_DOCUMENTACAO.md](README_DOCUMENTACAO.md) - Índice da documentação
+- 📖 [GUIA_RAPIDO.md](GUIA_RAPIDO.md) - Referência rápida
+- 📖 [ANALISE_FINAL.md](ANALISE_FINAL.md) - Análise completa do sistema
 
 ## 📞 Suporte
 
