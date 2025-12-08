@@ -1054,10 +1054,65 @@
             // Clear previous selections
             const modal = document.getElementById('complementos-modal');
             const modalInputs = modal.querySelectorAll('input[type="checkbox"]');
-            modalInputs.forEach(input => input.checked = false);
+            modalInputs.forEach(input => {
+                input.checked = false;
+                delete input.dataset.selectionOrder;
+            });
             
             // Populate modal content for Mais Pedidos
             populateMaisPedidosContent(size);
+            
+            // Add event listeners to track selection order
+            const frutasInputs = modal.querySelectorAll('input[name="mais-pedidos-frutas"]');
+            const complementosInputs = modal.querySelectorAll('input[name="mais-pedidos-complementos"]');
+            const coberturasInputs = modal.querySelectorAll('input[name="mais-pedidos-coberturas"]');
+            
+            frutasInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.checked) {
+                        // Assign selection order based on how many are already checked
+                        const checkedCount = Array.from(frutasInputs).filter(i => i.checked && i !== this).length;
+                        this.dataset.selectionOrder = checkedCount;
+                    } else {
+                        // When unchecked, remove order and reorder remaining
+                        delete this.dataset.selectionOrder;
+                        const checkedInputs = Array.from(frutasInputs).filter(i => i.checked);
+                        checkedInputs.forEach((input, index) => {
+                            input.dataset.selectionOrder = index;
+                        });
+                    }
+                });
+            });
+            
+            complementosInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.checked) {
+                        const checkedCount = Array.from(complementosInputs).filter(i => i.checked && i !== this).length;
+                        this.dataset.selectionOrder = checkedCount;
+                    } else {
+                        delete this.dataset.selectionOrder;
+                        const checkedInputs = Array.from(complementosInputs).filter(i => i.checked);
+                        checkedInputs.forEach((input, index) => {
+                            input.dataset.selectionOrder = index;
+                        });
+                    }
+                });
+            });
+            
+            coberturasInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.checked) {
+                        const checkedCount = Array.from(coberturasInputs).filter(i => i.checked && i !== this).length;
+                        this.dataset.selectionOrder = checkedCount;
+                    } else {
+                        delete this.dataset.selectionOrder;
+                        const checkedInputs = Array.from(coberturasInputs).filter(i => i.checked);
+                        checkedInputs.forEach((input, index) => {
+                            input.dataset.selectionOrder = index;
+                        });
+                    }
+                });
+            });
             
             // Show modal with animation
             modal.classList.remove('hidden');
@@ -1284,22 +1339,28 @@
         function updateMaisPedidosTotal() {
             const modal = document.getElementById('complementos-modal');
             
-            // Count selected items
-            const frutasChecked = modal.querySelectorAll('input[name="mais-pedidos-frutas"]:checked');
-            const complementosChecked = modal.querySelectorAll('input[name="mais-pedidos-complementos"]:checked');
-            const coberturasChecked = modal.querySelectorAll('input[name="mais-pedidos-coberturas"]:checked');
+            // Get all inputs (not just checked ones)
+            const frutasInputs = modal.querySelectorAll('input[name="mais-pedidos-frutas"]');
+            const complementosInputs = modal.querySelectorAll('input[name="mais-pedidos-complementos"]');
+            const coberturasInputs = modal.querySelectorAll('input[name="mais-pedidos-coberturas"]');
+            
+            // Get checked items in selection order (using data-selection-order attribute)
+            const frutasChecked = Array.from(frutasInputs).filter(input => input.checked);
+            const complementosChecked = Array.from(complementosInputs).filter(input => input.checked);
+            const coberturasChecked = Array.from(coberturasInputs).filter(input => input.checked);
             
             // Update free counts
             maisPedidosFreeCounts.frutas = Math.min(frutasChecked.length, 2);
             maisPedidosFreeCounts.complementos = Math.min(complementosChecked.length, 2);
             maisPedidosFreeCounts.coberturas = Math.min(coberturasChecked.length, 1);
             
-            // Update price labels for frutas
-            const frutasLabels = modal.querySelectorAll('input[name="mais-pedidos-frutas"]');
-            frutasLabels.forEach((input, index) => {
+            // Update price labels for frutas - based on selection order
+            frutasInputs.forEach((input) => {
                 const priceSpan = input.closest('label').querySelector('.mais-pedidos-price');
                 if (input.checked) {
-                    if (index < 2) {
+                    const selectionOrder = parseInt(input.dataset.selectionOrder || '999');
+                    // First 2 selected are free
+                    if (selectionOrder < 2) {
                         priceSpan.textContent = 'GRÁTIS';
                         priceSpan.classList.remove('text-primary');
                         priceSpan.classList.add('text-green-600');
@@ -1309,8 +1370,8 @@
                         priceSpan.classList.add('text-primary');
                     }
                 } else {
-                    // Reset to show what it would be if selected
-                    const checkedCount = modal.querySelectorAll('input[name="mais-pedidos-frutas"]:checked').length;
+                    // Show what it would be if selected next
+                    const checkedCount = frutasChecked.length;
                     if (checkedCount < 2) {
                         priceSpan.textContent = 'GRÁTIS';
                         priceSpan.classList.remove('text-primary');
@@ -1323,16 +1384,16 @@
                 }
             });
             
-            // Update price labels for complementos
-            const complementosLabels = modal.querySelectorAll('input[name="mais-pedidos-complementos"]');
-            complementosLabels.forEach((input, index) => {
+            // Update price labels for complementos - based on selection order
+            complementosInputs.forEach((input) => {
                 const priceSpan = input.closest('label').querySelector('.mais-pedidos-comp-price');
                 const parts = input.value.split('-');
                 const itemPrice = parseFloat(parts[parts.length - 1]);
                 
                 if (input.checked) {
-                    const checkedBefore = Array.from(complementosLabels).slice(0, index).filter(i => i.checked).length;
-                    if (checkedBefore < 2) {
+                    const selectionOrder = parseInt(input.dataset.selectionOrder || '999');
+                    // First 2 selected are free
+                    if (selectionOrder < 2) {
                         priceSpan.textContent = 'GRÁTIS';
                         priceSpan.classList.remove('text-primary');
                         priceSpan.classList.add('text-green-600');
@@ -1342,7 +1403,8 @@
                         priceSpan.classList.add('text-primary');
                     }
                 } else {
-                    const checkedCount = modal.querySelectorAll('input[name="mais-pedidos-complementos"]:checked').length;
+                    // Show what it would be if selected next
+                    const checkedCount = complementosChecked.length;
                     if (checkedCount < 2) {
                         priceSpan.textContent = 'GRÁTIS';
                         priceSpan.classList.remove('text-primary');
@@ -1355,15 +1417,16 @@
                 }
             });
             
-            // Update price labels for coberturas
-            const coberturasLabels = modal.querySelectorAll('input[name="mais-pedidos-coberturas"]');
-            coberturasLabels.forEach((input, index) => {
+            // Update price labels for coberturas - based on selection order
+            coberturasInputs.forEach((input) => {
                 const priceSpan = input.closest('label').querySelector('.mais-pedidos-cob-price');
                 const parts = input.value.split('-');
                 const itemPrice = parseFloat(parts[parts.length - 1]);
                 
                 if (input.checked) {
-                    if (index === 0 && coberturasChecked.length === 1) {
+                    const selectionOrder = parseInt(input.dataset.selectionOrder || '999');
+                    // First 1 selected is free
+                    if (selectionOrder < 1) {
                         priceSpan.textContent = 'GRÁTIS';
                         priceSpan.classList.remove('text-primary');
                         priceSpan.classList.add('text-green-600');
@@ -1373,7 +1436,8 @@
                         priceSpan.classList.add('text-primary');
                     }
                 } else {
-                    const checkedCount = modal.querySelectorAll('input[name="mais-pedidos-coberturas"]:checked').length;
+                    // Show what it would be if selected next
+                    const checkedCount = coberturasChecked.length;
                     if (checkedCount < 1) {
                         priceSpan.textContent = 'GRÁTIS';
                         priceSpan.classList.remove('text-primary');
@@ -1386,28 +1450,31 @@
                 }
             });
             
-            // Calculate total
+            // Calculate total - based on selection order, not price
             let modalTotal = currentModalBasePrice;
             
-            // Add paid frutas (after first 2)
-            frutasChecked.forEach((input, index) => {
-                if (index >= 2) {
+            // Add paid frutas (after first 2 selected)
+            frutasChecked.forEach((input) => {
+                const selectionOrder = parseInt(input.dataset.selectionOrder || '999');
+                if (selectionOrder >= 2) {
                     modalTotal += 2.00;
                 }
             });
             
-            // Add paid complementos (after first 2)
-            complementosChecked.forEach((input, index) => {
-                if (index >= 2) {
+            // Add paid complementos (after first 2 selected)
+            complementosChecked.forEach((input) => {
+                const selectionOrder = parseInt(input.dataset.selectionOrder || '999');
+                if (selectionOrder >= 2) {
                     const parts = input.value.split('-');
                     const price = parseFloat(parts[parts.length - 1]);
                     modalTotal += price;
                 }
             });
             
-            // Add paid coberturas (after first 1)
-            coberturasChecked.forEach((input, index) => {
-                if (index >= 1) {
+            // Add paid coberturas (after first 1 selected)
+            coberturasChecked.forEach((input) => {
+                const selectionOrder = parseInt(input.dataset.selectionOrder || '999');
+                if (selectionOrder >= 1) {
                     const parts = input.value.split('-');
                     const price = parseFloat(parts[parts.length - 1]);
                     modalTotal += price;
