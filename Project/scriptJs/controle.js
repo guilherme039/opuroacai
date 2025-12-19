@@ -117,7 +117,19 @@ function renderTamanhos() {
         
         html += `
             <div class="border-b border-gray-200 pb-4 mb-4">
-                <h3 class="font-bold text-primary mb-3">${categoryName}</h3>
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center gap-2">
+                        <h3 class="font-bold text-primary">${categoryName}</h3>
+                        <button onclick="editCategoryName('tamanhos', '${category}')"
+                                class="px-2 py-1 bg-blue-500 text-white rounded text-xs hover:bg-blue-600 transition-colors">
+                            ✏️ Editar
+                        </button>
+                    </div>
+                    <button onclick="addNewItem('tamanhos', '${category}')"
+                            class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium text-sm">
+                        ➕ Adicionar Item
+                    </button>
+                </div>
                 <div class="space-y-2">
                     ${menuData.tamanhos[category].map(item => createItemCard(item, 'tamanhos', category)).join('')}
                 </div>
@@ -131,7 +143,18 @@ function renderTamanhos() {
 // Render opções prontas
 function renderProntas() {
     const container = document.getElementById('prontas-list');
-    container.innerHTML = menuData.prontas.map(item => createItemCard(item, 'prontas')).join('');
+    let html = `
+        <div class="flex justify-end mb-4">
+            <button onclick="addNewItem('prontas')"
+                    class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium">
+                ➕ Adicionar Opção Pronta
+            </button>
+        </div>
+        <div class="space-y-2">
+            ${menuData.prontas.map(item => createItemCard(item, 'prontas')).join('')}
+        </div>
+    `;
+    container.innerHTML = html;
 }
 
 // Render complementos
@@ -148,7 +171,19 @@ function renderComplementos() {
         
         html += `
             <div class="border-b border-gray-200 pb-4 mb-4">
-                <h3 class="font-bold text-primary mb-3">${categoryName}</h3>
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center gap-2">
+                        <h3 class="font-bold text-primary">${categoryName}</h3>
+                        <button onclick="editCategoryName('complementos', '${category}')"
+                                class="px-2 py-1 bg-blue-500 text-white rounded text-xs hover:bg-blue-600 transition-colors">
+                            ✏️ Editar
+                        </button>
+                    </div>
+                    <button onclick="addNewItem('complementos', '${category}')"
+                            class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium text-sm">
+                        ➕ Adicionar Item
+                    </button>
+                </div>
                 <div class="space-y-2">
                     ${menuData.complementos[category].map(item => createItemCard(item, 'complementos', category)).join('')}
                 </div>
@@ -162,7 +197,18 @@ function renderComplementos() {
 // Render combos
 function renderCombos() {
     const container = document.getElementById('combos-list');
-    container.innerHTML = menuData.combos.map(item => createItemCard(item, 'combos')).join('');
+    let html = `
+        <div class="flex justify-end mb-4">
+            <button onclick="addNewItem('combos')"
+                    class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium">
+                ➕ Adicionar Combo
+            </button>
+        </div>
+        <div class="space-y-2">
+            ${menuData.combos.map(item => createItemCard(item, 'combos')).join('')}
+        </div>
+    `;
+    container.innerHTML = html;
 }
 
 // Create item card HTML
@@ -217,6 +263,14 @@ function createItemCard(item, type, subtype = null) {
                         </option>
                     `).join('')}
                 </select>
+            </div>
+            
+            <!-- Remove Button -->
+            <div>
+                <button onclick="removeItem('${type}', '${item.id}', '${subtype}')"
+                        class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-medium">
+                    🗑️ Remover
+                </button>
             </div>
         </div>
     `;
@@ -336,3 +390,112 @@ document.addEventListener('DOMContentLoaded', () => {
 setInterval(() => {
     saveMenuData(menuData);
 }, 30000);
+
+
+// ============================================
+// ADICIONAR E REMOVER ITENS
+// ============================================
+
+// Adicionar novo item
+function addNewItem(type, subtype = null) {
+    const itemName = prompt('Nome do item:');
+    if (!itemName) return;
+    
+    const itemPrice = parseFloat(prompt('Preço (R$):'));
+    if (isNaN(itemPrice) || itemPrice < 0) {
+        alert('Preço inválido!');
+        return;
+    }
+    
+    const newItem = {
+        id: `custom-${Date.now()}`,
+        name: itemName,
+        price: itemPrice,
+        active: true,
+        stock: 'unlimited'
+    };
+    
+    // Adicionar item na estrutura correta
+    if (type === 'tamanhos' && subtype) {
+        menuData.tamanhos[subtype].push(newItem);
+    } else if (type === 'complementos' && subtype) {
+        menuData.complementos[subtype].push(newItem);
+    } else if (type === 'prontas') {
+        newItem.size = '500ml';
+        menuData.prontas.push(newItem);
+    } else if (type === 'combos') {
+        const items = parseInt(prompt('Quantos itens no combo?'));
+        if (isNaN(items) || items < 1) {
+            alert('Quantidade inválida!');
+            return;
+        }
+        newItem.items = items;
+        menuData.combos.push(newItem);
+    }
+    
+    saveMenuData(menuData);
+    renderAll();
+    showToast(`✅ Item "${itemName}" adicionado com sucesso!`, 'success');
+}
+
+// Remover item
+function removeItem(type, id, subtype = null) {
+    if (!confirm('Tem certeza que deseja remover este item?')) return;
+    
+    if (type === 'tamanhos' && subtype) {
+        menuData.tamanhos[subtype] = menuData.tamanhos[subtype].filter(i => i.id !== id);
+    } else if (type === 'complementos' && subtype) {
+        menuData.complementos[subtype] = menuData.complementos[subtype].filter(i => i.id !== id);
+    } else {
+        menuData[type] = menuData[type].filter(i => i.id !== id);
+    }
+    
+    saveMenuData(menuData);
+    renderAll();
+    showToast('🗑️ Item removido com sucesso!', 'success');
+}
+
+// Renderizar tudo novamente
+function renderAll() {
+    renderTamanhos();
+    renderProntas();
+    renderComplementos();
+    renderCombos();
+}
+
+// Editar nome da categoria
+function editCategoryName(type, subtype = null) {
+    let currentName = '';
+    
+    if (type === 'tamanhos' && subtype) {
+        const names = {
+            'tigela': 'Tigela',
+            'copo': 'Copo',
+            'batido': 'Batido',
+            'maisPedidos': 'Mais Pedidos'
+        };
+        currentName = names[subtype];
+    } else if (type === 'complementos' && subtype) {
+        const names = {
+            'frutas': 'Frutas',
+            'complementos': 'Complementos',
+            'coberturas': 'Coberturas'
+        };
+        currentName = names[subtype];
+    }
+    
+    const newName = prompt(`Editar nome da categoria "${currentName}":`, currentName);
+    if (!newName || newName === currentName) return;
+    
+    // Salvar novo nome (para exibição futura)
+    if (!menuData.categoryNames) menuData.categoryNames = {};
+    if (type === 'tamanhos' && subtype) {
+        menuData.categoryNames[`tamanhos_${subtype}`] = newName;
+    } else if (type === 'complementos' && subtype) {
+        menuData.categoryNames[`complementos_${subtype}`] = newName;
+    }
+    
+    saveMenuData(menuData);
+    renderAll();
+    showToast(`✅ Categoria renomeada para "${newName}"!`, 'success');
+}
