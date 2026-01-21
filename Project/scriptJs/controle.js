@@ -396,46 +396,142 @@ setInterval(() => {
 // ADICIONAR E REMOVER ITENS
 // ============================================
 
-// Adicionar novo item
+// Variáveis globais para o modal de adicionar item
+let currentAddItemType = null;
+let currentAddItemSubtype = null;
+
+// Abrir modal de adicionar item
 function addNewItem(type, subtype = null) {
-    const itemName = prompt('Nome do item:');
-    if (!itemName) return;
+    currentAddItemType = type;
+    currentAddItemSubtype = subtype;
     
-    const itemPrice = parseFloat(prompt('Preço (R$):'));
-    if (isNaN(itemPrice) || itemPrice < 0) {
-        alert('Preço inválido!');
+    // Limpar campos
+    document.getElementById('new-item-name').value = '';
+    document.getElementById('new-item-price').value = '';
+    document.getElementById('new-item-description').value = '';
+    document.getElementById('new-item-stock').value = 'unlimited';
+    document.getElementById('new-item-active').checked = true;
+    
+    // Configurar campos específicos
+    const sizeField = document.getElementById('new-item-size-field');
+    const itemsField = document.getElementById('new-item-items-field');
+    
+    // Ocultar todos os campos específicos primeiro
+    sizeField.classList.add('hidden');
+    itemsField.classList.add('hidden');
+    
+    // Atualizar subtítulo e mostrar campos específicos
+    const subtitle = document.getElementById('add-item-subtitle');
+    
+    if (type === 'tamanhos') {
+        const categoryNames = {
+            'tigela': 'Tigela',
+            'copo': 'Copo',
+            'batido': 'Batido',
+            'maisPedidos': 'Mais Pedidos'
+        };
+        subtitle.textContent = `Adicionar novo tamanho em ${categoryNames[subtype] || subtype}`;
+    } else if (type === 'complementos') {
+        const categoryNames = {
+            'frutas': 'Frutas',
+            'complementos': 'Complementos',
+            'coberturas': 'Coberturas'
+        };
+        subtitle.textContent = `Adicionar novo item em ${categoryNames[subtype] || subtype}`;
+    } else if (type === 'prontas') {
+        subtitle.textContent = 'Adicionar nova opção pronta';
+        sizeField.classList.remove('hidden');
+    } else if (type === 'combos') {
+        subtitle.textContent = 'Adicionar novo combo promocional';
+        itemsField.classList.remove('hidden');
+    }
+    
+    // Mostrar modal com animação
+    const modal = document.getElementById('add-item-modal');
+    const content = document.getElementById('add-item-modal-content');
+    modal.classList.remove('hidden');
+    
+    setTimeout(() => {
+        content.classList.remove('scale-95', 'opacity-0');
+        content.classList.add('scale-100', 'opacity-100');
+    }, 10);
+    
+    // Focar no campo de nome
+    setTimeout(() => {
+        document.getElementById('new-item-name').focus();
+    }, 300);
+}
+
+// Fechar modal de adicionar item
+function closeAddItemModal() {
+    const content = document.getElementById('add-item-modal-content');
+    content.classList.remove('scale-100', 'opacity-100');
+    content.classList.add('scale-95', 'opacity-0');
+    
+    setTimeout(() => {
+        document.getElementById('add-item-modal').classList.add('hidden');
+        currentAddItemType = null;
+        currentAddItemSubtype = null;
+    }, 300);
+}
+
+// Salvar novo item
+function saveNewItem() {
+    // Validar campos obrigatórios
+    const itemName = document.getElementById('new-item-name').value.trim();
+    const itemPrice = parseFloat(document.getElementById('new-item-price').value);
+    
+    if (!itemName) {
+        alert('Por favor, preencha o nome do item!');
+        document.getElementById('new-item-name').focus();
         return;
     }
     
+    if (isNaN(itemPrice) || itemPrice < 0) {
+        alert('Por favor, preencha um preço válido!');
+        document.getElementById('new-item-price').focus();
+        return;
+    }
+    
+    // Criar novo item
     const newItem = {
         id: `custom-${Date.now()}`,
         name: itemName,
         price: itemPrice,
-        active: true,
-        stock: 'unlimited'
+        active: document.getElementById('new-item-active').checked,
+        stock: document.getElementById('new-item-stock').value,
+        description: document.getElementById('new-item-description').value.trim()
     };
     
-    // Adicionar item na estrutura correta
-    if (type === 'tamanhos' && subtype) {
-        menuData.tamanhos[subtype].push(newItem);
-    } else if (type === 'complementos' && subtype) {
-        menuData.complementos[subtype].push(newItem);
-    } else if (type === 'prontas') {
-        newItem.size = '500ml';
-        menuData.prontas.push(newItem);
-    } else if (type === 'combos') {
-        const items = parseInt(prompt('Quantos itens no combo?'));
+    // Adicionar campos específicos
+    if (currentAddItemType === 'prontas') {
+        newItem.size = document.getElementById('new-item-size').value;
+    } else if (currentAddItemType === 'combos') {
+        const items = parseInt(document.getElementById('new-item-items').value);
         if (isNaN(items) || items < 1) {
-            alert('Quantidade inválida!');
+            alert('Por favor, preencha uma quantidade válida de itens!');
+            document.getElementById('new-item-items').focus();
             return;
         }
         newItem.items = items;
+    }
+    
+    // Adicionar item na estrutura correta
+    if (currentAddItemType === 'tamanhos' && currentAddItemSubtype) {
+        menuData.tamanhos[currentAddItemSubtype].push(newItem);
+    } else if (currentAddItemType === 'complementos' && currentAddItemSubtype) {
+        menuData.complementos[currentAddItemSubtype].push(newItem);
+    } else if (currentAddItemType === 'prontas') {
+        menuData.prontas.push(newItem);
+    } else if (currentAddItemType === 'combos') {
         menuData.combos.push(newItem);
     }
     
+    // Salvar e atualizar
     saveMenuData(menuData);
     renderAll();
-    showToast(`✅ Item "${itemName}" adicionado com sucesso!`, 'success');
+    closeAddItemModal();
+    showToast(`Item "${itemName}" adicionado com sucesso!`, 'success');
 }
 
 // Remover item

@@ -1,7 +1,16 @@
 /* Estilos customizados - O Puro Açaí */
 
-body {
+/* Importar fonte moderna */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
     box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .gradient-bg {
@@ -9,7 +18,13 @@ body {
 }
 
 .card-shadow {
-    box-shadow: 0 4px 20px rgba(55, 1, 96, 0.15);
+    box-shadow: 0 2px 12px rgba(55, 1, 96, 0.08);
+    transition: all 0.3s ease;
+}
+
+.card-shadow:hover {
+    box-shadow: 0 8px 24px rgba(55, 1, 96, 0.15);
+    transform: translateY(-2px);
 }
 
 .pulse-animation {
@@ -17,12 +32,9 @@ body {
 }
 
 @keyframes pulse {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: scale(1);
     }
-
     50% {
         transform: scale(1.05);
     }
@@ -120,20 +132,28 @@ body {
 
 .tab-button {
     cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
 }
 
 .tab-button.active {
     background-color: #370160;
     color: white;
+    box-shadow: 0 4px 12px rgba(55, 1, 96, 0.25);
 }
 
 .tab-button:not(.active) {
-    background-color: #f3f4f6;
-    color: #374151;
+    background-color: #f9fafb;
+    color: #6b7280;
+    border-color: #e5e7eb;
 }
 
 .tab-button:hover:not(.active) {
-    background-color: #e5e7eb;
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+    color: #374151;
 }
 
 /* =
@@ -1184,4 +1204,879 @@ h2.text-xl.font-bold.text-primary {
 /* Posicionar botão Admin mais abaixo */
 header .absolute.right-0.top-0 {
     top: 0.5rem !important;
+}
+
+/* ====
+========================================
+   MELHORIAS GERAIS DE UI/UX
+   ============================================ */
+
+/* Botões modernos com ícones */
+button {
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Botões de ação principais */
+.bg-green-500 {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+}
+
+.bg-green-500:hover {
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+
+.bg-blue-500 {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+}
+
+.bg-blue-500:hover {
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+}
+
+.bg-red-500 {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.25);
+}
+
+.bg-red-500:hover {
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
+}
+
+/* Cards de itens no painel de controle */
+#tamanhos-list .bg-gray-50,
+#prontas-list .bg-gray-50,
+#complementos-list .bg-gray-50,
+#combos-list .bg-gray-50 {
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+    border: 2px solid #e5e7eb;
+    transition: all 0.2s ease;
+}
+
+#tamanhos-list .bg-gray-50:hover,
+#prontas-list .bg-gray-50:hover,
+#complementos-list .bg-gray-50:hover,
+#combos-list .bg-gray-50:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Inputs modernos */
+input[type="number"],
+input[type="text"],
+select {
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: #370160 !important;
+    box-shadow: 0 0 0 3px rgba(55, 1, 96, 0.1) !important;
+}
+
+/* Toggle switch moderno */
+.peer-checked\:bg-primary {
+    background-color: #370160 !important;
+}
+
+/* Títulos de seção */
+h2, h3 {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+/* Cards do site principal */
+.bg-white.rounded-xl {
+    background: white;
+    border: 1px solid #f3f4f6;
+}
+
+/* Animação suave para modais */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.translate-y-full {
+    animation: slideUp 0.3s ease-out forwards;
+}
+
+/* Melhorar legibilidade de textos */
+p, span, div {
+    line-height: 1.6;
+}
+
+/* Espaçamento consistente */
+.space-y-2 > * + * {
+    margin-top: 0.75rem;
+}
+
+.space-y-4 > * + * {
+    margin-top: 1.25rem;
+}
+
+/* Header sticky melhorado */
+header.sticky {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu de navegação superior */
+#top-menu button:hover {
+    background-color: #f3f4f6;
+    transform: scale(1.05);
+}
+
+#top-menu button:active {
+    transform: scale(0.98);
+}
+
+/* Cards de promoção com gradiente melhorado */
+.bg-gradient-to-r.from-primary.to-purple-700 {
+    background: linear-gradient(135deg, #370160 0%, #6b21a8 100%);
+    box-shadow: 0 4px 16px rgba(55, 1, 96, 0.25);
+}
+
+.bg-gradient-to-r.from-primary.to-purple-700:hover {
+    box-shadow: 0 6px 20px rgba(55, 1, 96, 0.35);
+    transform: translateY(-2px);
+}
+
+/* Botão de carrinho fixo */
+#fixed-cart-button .bg-primary {
+    box-shadow: 0 8px 24px rgba(55, 1, 96, 0.3);
+}
+
+/* Cards de destaque com hover suave */
+.bg-white.rounded-xl.p-4.card-shadow.cursor-pointer {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bg-white.rounded-xl.p-4.card-shadow.cursor-pointer:hover {
+    transform: translateY(-4px) scale(1.02);
+}
+
+/* Badges e tags */
+.rounded-full {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Melhorar contraste de cores */
+.text-gray-600 {
+    color: #4b5563 !important;
+}
+
+.text-gray-700 {
+    color: #374151 !important;
+}
+
+.text-gray-900 {
+    color: #111827 !important;
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 768px) {
+    button {
+        min-height: 44px;
+        font-size: 0.9375rem;
+    }
+    
+    input[type="number"],
+    input[type="text"],
+    select {
+        min-height: 44px;
+        font-size: 1rem;
+    }
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #370160;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4a0e7a;
+}
+
+/* Toast notification melhorado */
+#toast {
+    animation: slideInRight 0.3s ease-out;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Melhorar acessibilidade - foco visível */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid #370160;
+    outline-offset: 2px;
+}
+
+/* Loading states */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Transições suaves globais */
+* {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ============================================
+   MELHORIAS ESPECÍFICAS DO PAINEL DE CONTROLE
+   ============================================ */
+
+/* Tabs com indicador visual */
+.tab-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #370160;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.tab-button.active::before {
+    transform: scaleX(1);
+}
+
+/* Cards de categoria com melhor hierarquia */
+#tamanhos-list h3,
+#prontas-list h3,
+#complementos-list h3,
+#combos-list h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #370160;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    border-radius: 0.5rem;
+    border-left: 4px solid #370160;
+    margin-bottom: 1rem;
+}
+
+/* Botões de editar e adicionar com ícones maiores */
+#tamanhos-list button,
+#prontas-list button,
+#complementos-list button,
+#combos-list button {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+/* Cards de itens com grid melhorado */
+#tamanhos-list .bg-gray-50,
+#prontas-list .bg-gray-50,
+#complementos-list .bg-gray-50,
+#combos-list .bg-gray-50 {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem 1.5rem;
+}
+
+/* Nome do item com destaque */
+#tamanhos-list .font-medium,
+#prontas-list .font-medium,
+#complementos-list .font-medium,
+#combos-list .font-medium {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    min-width: 150px;
+}
+
+/* Inputs de preço com estilo moderno */
+#tamanhos-list input[type="number"],
+#prontas-list input[type="number"],
+#complementos-list input[type="number"],
+#combos-list input[type="number"] {
+    width: 130px;
+    padding: 0.625rem 0.75rem 0.625rem 2.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.625rem;
+    background: white;
+}
+
+/* Select de estoque com estilo moderno */
+#tamanhos-list select,
+#prontas-list select,
+#complementos-list select,
+#combos-list select {
+    width: 130px;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.625rem;
+    background: white;
+    cursor: pointer;
+}
+
+/* Botão remover com hover vermelho */
+#tamanhos-list .bg-red-500,
+#prontas-list .bg-red-500,
+#complementos-list .bg-red-500,
+#combos-list .bg-red-500 {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* Toggle switch com animação suave */
+.peer-checked\:after\:translate-x-full {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Separadores entre categorias */
+.border-b.border-gray-200 {
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Última categoria sem borda */
+.border-b.border-gray-200:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+/* Header sticky com sombra ao rolar */
+header.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+/* Tabs sticky com sombra */
+.sticky.top-24 {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Botões de ação com ícones alinhados */
+.flex.items-center.gap-2 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Responsividade para tablets */
+@media (max-width: 1024px) {
+    #tamanhos-list .bg-gray-50,
+    #prontas-list .bg-gray-50,
+    #complementos-list .bg-gray-50,
+    #combos-list .bg-gray-50 {
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+    }
+    
+    #tamanhos-list .font-medium,
+    #prontas-list .font-medium,
+    #complementos-list .font-medium,
+    #combos-list .font-medium {
+        min-width: auto;
+    }
+}
+
+/* Responsividade para mobile */
+@media (max-width: 640px) {
+    .tab-button span:not(.text-xl) {
+        display: none;
+    }
+    
+    .tab-button {
+        padding: 0.75rem 1rem;
+    }
+    
+    header .flex.gap-2 a span:not(.text-xl) {
+        display: none;
+    }
+    
+    #tamanhos-list input[type="number"],
+    #prontas-list input[type="number"],
+    #complementos-list input[type="number"],
+    #combos-list input[type="number"],
+    #tamanhos-list select,
+    #prontas-list select,
+    #complementos-list select,
+    #combos-list select {
+        width: 100%;
+    }
+}
+
+/* Animação de entrada para cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tab-content {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* Melhorar contraste de labels */
+label.text-xs {
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+}
+
+/* Ícone R$ no input */
+.relative span {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 600;
+    color: #9ca3af;
+    pointer-events: none;
+    font-size: 0.875rem;
+}
+
+/* Melhorar feedback visual ao salvar */
+#toast {
+    backdrop-filter: blur(8px);
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+/* Botões com estado de loading */
+button.loading {
+    position: relative;
+    color: transparent;
+}
+
+button.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ============================================
+   MELHORIAS UI/UX - PAINEL ADMINISTRATIVO
+   ============================================ */
+
+/* Header sticky melhorado */
+header.sticky {
+    backdrop-filter: blur(10px);
+}
+
+/* Cards de pedidos com melhor hierarquia */
+.modern-order-card {
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+}
+
+.modern-order-card:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Seções de informação com melhor espaçamento */
+.modern-order-card .bg-gray-50 {
+    background: #f9fafb;
+    border: 1px solid #f3f4f6;
+}
+
+/* Títulos de seção mais destacados */
+.modern-order-card h4 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+}
+
+/* Melhor legibilidade de textos */
+.modern-order-card p {
+    line-height: 1.6;
+    color: #1f2937;
+}
+
+.modern-order-card strong {
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Botões com hierarquia clara */
+.modern-order-card button,
+.modern-order-card select {
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+/* Botão primário (Editar) */
+.modern-order-card .bg-blue-500 {
+    background: #3b82f6;
+    box-shadow: 0 1px 3px rgba(59, 130, 246, 0.3);
+}
+
+.modern-order-card .bg-blue-500:hover {
+    background: #2563eb;
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Botão secundário (WhatsApp) */
+.modern-order-card .bg-green-500 {
+    background: #10b981;
+    box-shadow: 0 1px 3px rgba(16, 185, 129, 0.3);
+}
+
+.modern-order-card .bg-green-500:hover {
+    background: #059669;
+    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Botão destrutivo (Excluir) */
+.modern-order-card .bg-red-500 {
+    background: #ef4444;
+    box-shadow: 0 1px 3px rgba(239, 68, 68, 0.3);
+}
+
+.modern-order-card .bg-red-500:hover {
+    background: #dc2626;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Select de status com melhor visual */
+.modern-order-card select {
+    border: 2px solid #e5e7eb;
+    background: white;
+}
+
+.modern-order-card select:hover {
+    border-color: #d1d5db;
+}
+
+.modern-order-card select:focus {
+    border-color: #370160;
+    box-shadow: 0 0 0 3px rgba(55, 1, 96, 0.1);
+}
+
+/* Badge de status com melhor contraste */
+.modern-order-card span[class*="rounded-full"] {
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Valores monetários com destaque */
+.modern-order-card .text-2xl.font-bold,
+.modern-order-card .text-3xl.font-bold {
+    letter-spacing: -0.02em;
+    color: #370160;
+}
+
+/* Itens do pedido com melhor separação */
+.modern-order-card .border-b.border-gray-200 {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-color: #e5e7eb;
+}
+
+/* Observações com melhor destaque */
+.modern-order-card .bg-yellow-50 {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-left: 4px solid #f59e0b;
+}
+
+/* Espaçamento entre cards */
+#orders-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Filtros com melhor organização */
+.bg-white.rounded-xl.shadow-sm {
+    border: 1px solid #f3f4f6;
+}
+
+/* Labels dos filtros */
+label.text-xs.font-semibold {
+    color: #6b7280;
+}
+
+/* Inputs e selects com melhor foco */
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #370160;
+    box-shadow: 0 0 0 3px rgba(55, 1, 96, 0.1);
+}
+
+/* Empty state melhorado */
+#empty-state {
+    background: white;
+    border: 2px dashed #e5e7eb;
+    border-radius: 1rem;
+    padding: 4rem 2rem;
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 768px) {
+    .modern-order-card {
+        padding: 1rem;
+    }
+    
+    .modern-order-card button,
+    .modern-order-card select {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .modern-order-card .flex.flex-wrap.gap-2 {
+        flex-direction: column;
+    }
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Transições suaves globais */
+* {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Melhorar contraste de textos secundários */
+.text-gray-500 {
+    color: #6b7280;
+}
+
+.text-gray-600 {
+    color: #4b5563;
+}
+
+.text-gray-700 {
+    color: #374151;
+}
+
+/* Header com melhor hierarquia */
+header nav a {
+    font-size: 0.9375rem;
+}
+
+/* Total de pedidos com melhor destaque */
+header .bg-white\/10 {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Botão limpar todos com visual adequado */
+button.bg-red-50 {
+    font-size: 0.9375rem;
+}
+
+button.bg-red-50:hover {
+    transform: translateY(-1px);
+}
+
+
+/* ============================================
+   MELHORIAS UI/UX - PAINEL DE CONTROLE
+   ============================================ */
+
+/* Tabs com melhor hierarquia */
+.tab-button {
+    border: 2px solid transparent;
+    font-size: 0.9375rem;
+}
+
+.tab-button.active {
+    background-color: #370160;
+    color: white;
+    border-color: #370160;
+    box-shadow: 0 2px 8px rgba(55, 1, 96, 0.25);
+}
+
+.tab-button:not(.active) {
+    background-color: #f9fafb;
+    color: #6b7280;
+    border-color: #e5e7eb;
+}
+
+.tab-button:not(.active):hover {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+    color: #374151;
+    transform: translateY(-1px);
+}
+
+/* Cards de seção com melhor visual */
+.bg-white.rounded-xl.p-8 {
+    border: 1px solid #f3f4f6;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Títulos de seção com melhor destaque */
+.border-b-2.border-primary {
+    border-bottom-width: 3px;
+    padding-bottom: 1rem;
+}
+
+/* Botões de ação com hierarquia clara */
+.bg-green-600 {
+    background: #16a34a;
+}
+
+.bg-green-600:hover {
+    background: #15803d;
+    transform: translateY(-1px);
+}
+
+/* Botões secundários com visual adequado */
+.bg-red-50 {
+    background: #fef2f2;
+}
+
+.bg-red-50:hover {
+    background: #fee2e2;
+    transform: translateY(-1px);
+}
+
+.bg-blue-50 {
+    background: #eff6ff;
+}
+
+.bg-blue-50:hover {
+    background: #dbeafe;
+    transform: translateY(-1px);
+}
+
+/* Toast com melhor visual */
+#toast {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    box-shadow: 0 4px 16px rgba(22, 163, 74, 0.3);
+}
+
+/* Modal de adicionar item com melhor visual */
+#add-item-modal-content {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Inputs do modal com melhor foco */
+#add-item-modal input:focus,
+#add-item-modal select:focus,
+#add-item-modal textarea:focus {
+    border-color: #370160;
+    box-shadow: 0 0 0 3px rgba(55, 1, 96, 0.1);
+}
+
+/* Labels do modal com melhor legibilidade */
+#add-item-modal label {
+    font-weight: 600;
+    color: #374151;
+}
+
+/* Botões do modal com hierarquia */
+#add-item-modal .bg-green-500 {
+    background: #16a34a;
+}
+
+#add-item-modal .bg-green-500:hover {
+    background: #15803d;
+    transform: translateY(-1px);
+}
+
+#add-item-modal .bg-gray-500 {
+    background: #6b7280;
+}
+
+#add-item-modal .bg-gray-500:hover {
+    background: #4b5563;
+    transform: translateY(-1px);
 }

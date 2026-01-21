@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,27 +8,34 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="scriptJs/tailwind-config.js"></script>
     <link rel="stylesheet" href="Css/system.css">
+    <link rel="stylesheet" href="Css/admin-premium.css">
 </head>
+
 <body class="bg-gray-50">
     <!-- Header -->
-    <header class="gradient-bg text-white shadow-lg">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex items-center justify-between">
+    <header class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-5">
+            <div class="flex items-center justify-between flex-wrap gap-4">
                 <div>
-                    <h1 class="text-2xl font-bold">⚙️ Controle de Cardápio</h1>
-                    <p class="text-secondary text-sm">Gerenciar Preços, Estoque e Disponibilidade</p>
+                    <h1 class="text-2xl font-bold tracking-tight">
+                        Controle de Cardápio
+                    </h1>
+                    <p class="text-secondary text-sm mt-0.5 font-medium">Gerenciar Preços, Estoque e Disponibilidade</p>
                 </div>
-                <div class="flex gap-2">
-                    <a href="carteira.html" class="bg-green-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-600 transition-colors">
-                        💰 Carteira
+                <nav class="flex gap-2 flex-wrap">
+                    <a href="carteira.html"
+                        class="px-4 py-2.5 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-all shadow-sm hover:shadow-md">
+                        Carteira
                     </a>
-                    <a href="admin.html" class="bg-secondary text-primary px-4 py-2 rounded-lg font-bold hover:bg-yellow-500 transition-colors">
-                        📦 Pedidos
+                    <a href="admin.html"
+                        class="px-4 py-2.5 bg-secondary text-primary rounded-lg font-semibold hover:bg-yellow-500 transition-all shadow-sm hover:shadow-md">
+                        Pedidos
                     </a>
-                    <a href="index_test.html" class="bg-white text-primary px-4 py-2 rounded-lg font-bold hover:bg-gray-100 transition-colors">
-                        🏠 Site
+                    <a href="index_test.html"
+                        class="px-4 py-2.5 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100 transition-all shadow-sm hover:shadow-md">
+                        Site
                     </a>
-                </div>
+                </nav>
             </div>
         </div>
     </header>
@@ -35,27 +43,28 @@
     <!-- Main Content -->
     <div class="container mx-auto px-4 py-6">
         <!-- Tabs -->
-        <div class="bg-white rounded-xl p-4 card-shadow mb-6">
-            <div class="flex flex-wrap gap-2">
-                <button onclick="showTab('tamanhos')" id="tab-tamanhos" class="tab-button active px-4 py-2 rounded-lg font-medium transition-colors">
-                    📏 Tamanhos Base
-                </button>
-                <button onclick="showTab('prontas')" id="tab-prontas" class="tab-button px-4 py-2 rounded-lg font-medium transition-colors">
-                    🍽️ Opções Prontas
-                </button>
-                <button onclick="showTab('complementos')" id="tab-complementos" class="tab-button px-4 py-2 rounded-lg font-medium transition-colors">
-                    🍓 Complementos
-                </button>
-                <button onclick="showTab('combos')" id="tab-combos" class="tab-button px-4 py-2 rounded-lg font-medium transition-colors">
-                    🍧 Combos
-                </button>
-            </div>
+        <div class="tabs-container mb-6 sticky top-24 z-40">
+            <button onclick="showTab('tamanhos')" id="tab-tamanhos" class="tab-button active">
+                Tamanhos Base
+            </button>
+            <button onclick="showTab('prontas')" id="tab-prontas" class="tab-button">
+                Opções Prontas
+            </button>
+            <button onclick="showTab('complementos')" id="tab-complementos" class="tab-button">
+                Complementos
+            </button>
+            <button onclick="showTab('combos')" id="tab-combos" class="tab-button">
+                Combos
+            </button>
         </div>
 
         <!-- Tamanhos Base Tab -->
         <div id="content-tamanhos" class="tab-content">
-            <div class="bg-white rounded-xl p-6 card-shadow mb-6">
-                <h2 class="text-xl font-bold text-primary mb-4">📏 Tamanhos Base (Tigela, Copo, Batido)</h2>
+            <div class="bg-white rounded-xl p-8 card-shadow mb-6">
+                <div class="mb-6 pb-4 border-b-2 border-primary">
+                    <h2 class="text-2xl font-bold text-primary">Tamanhos Base</h2>
+                    <p class="text-sm text-gray-600 mt-1">Tigela, Copo, Batido e Mais Pedidos</p>
+                </div>
                 <div id="tamanhos-list" class="space-y-4">
                     <!-- Will be populated by JS -->
                 </div>
@@ -64,8 +73,11 @@
 
         <!-- Opções Prontas Tab -->
         <div id="content-prontas" class="tab-content hidden">
-            <div class="bg-white rounded-xl p-6 card-shadow mb-6">
-                <h2 class="text-xl font-bold text-primary mb-4">🍽️ Opções Prontas</h2>
+            <div class="bg-white rounded-xl p-8 card-shadow mb-6">
+                <div class="mb-6 pb-4 border-b-2 border-primary">
+                    <h2 class="text-2xl font-bold text-primary">Opções Prontas</h2>
+                    <p class="text-sm text-gray-600 mt-1">Açaís prontos com complementos inclusos</p>
+                </div>
                 <div id="prontas-list" class="space-y-4">
                     <!-- Will be populated by JS -->
                 </div>
@@ -74,8 +86,11 @@
 
         <!-- Complementos Tab -->
         <div id="content-complementos" class="tab-content hidden">
-            <div class="bg-white rounded-xl p-6 card-shadow mb-6">
-                <h2 class="text-xl font-bold text-primary mb-4">🍓 Complementos e Adicionais</h2>
+            <div class="bg-white rounded-xl p-8 card-shadow mb-6">
+                <div class="mb-6 pb-4 border-b-2 border-primary">
+                    <h2 class="text-2xl font-bold text-primary">Complementos e Adicionais</h2>
+                    <p class="text-sm text-gray-600 mt-1">Frutas, complementos e coberturas</p>
+                </div>
                 <div id="complementos-list" class="space-y-4">
                     <!-- Will be populated by JS -->
                 </div>
@@ -84,8 +99,11 @@
 
         <!-- Combos Tab -->
         <div id="content-combos" class="tab-content hidden">
-            <div class="bg-white rounded-xl p-6 card-shadow mb-6">
-                <h2 class="text-xl font-bold text-primary mb-4">🍧 Combos Promocionais</h2>
+            <div class="bg-white rounded-xl p-8 card-shadow mb-6">
+                <div class="mb-6 pb-4 border-b-2 border-primary">
+                    <h2 class="text-2xl font-bold text-primary">Combos Promocionais</h2>
+                    <p class="text-sm text-gray-600 mt-1">Combos especiais com desconto</p>
+                </div>
                 <div id="combos-list" class="space-y-4">
                     <!-- Will be populated by JS -->
                 </div>
@@ -93,26 +111,142 @@
         </div>
 
         <!-- Actions -->
-        <div class="bg-white rounded-xl p-6 card-shadow">
-            <div class="flex flex-wrap gap-4">
-                <button onclick="saveAllChanges()" class="flex-1 bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 transition-colors">
-                    💾 Salvar Todas as Alterações
+        <div class="card-premium p-6 sticky bottom-6 z-40">
+            <div class="flex flex-wrap gap-3">
+                <button onclick="saveAllChanges()" class="btn-primary flex-1 min-w-[200px]">
+                    Salvar Todas as Alterações
                 </button>
-                <button onclick="resetToDefaults()" class="bg-red-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-600 transition-colors">
-                    🔄 Restaurar Padrões
+                <button onclick="resetToDefaults()" class="btn-danger">
+                    Restaurar Padrões
                 </button>
-                <button onclick="exportData()" class="bg-blue-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-600 transition-colors">
-                    📥 Exportar Dados
+                <button onclick="exportData()" class="btn-secondary">
+                    Exportar Dados
                 </button>
             </div>
         </div>
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 font-medium hidden">
+    <div id="toast"
+        class="fixed top-6 right-6 bg-green-500 text-white px-6 py-4 rounded-xl shadow-2xl z-50 font-semibold hidden">
         Alterações salvas com sucesso!
+    </div>
+
+    <!-- Modal de Adicionar Item -->
+    <div id="add-item-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div id="add-item-modal-content" class="bg-white rounded-2xl w-full max-w-2xl transform transition-transform duration-300 scale-95 opacity-0">
+                <!-- Modal Header -->
+                <div class="gradient-bg text-white p-6 rounded-t-2xl">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h2 class="text-2xl font-bold">Adicionar Novo Item</h2>
+                            <p class="text-secondary text-sm mt-1" id="add-item-subtitle">Preencha os dados do novo item</p>
+                        </div>
+                        <button onclick="closeAddItemModal()" class="text-white hover:text-secondary transition-colors">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="p-6 max-h-[60vh] overflow-y-auto">
+                    <div class="space-y-4">
+                        <!-- Nome do Item -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Nome do Item *</label>
+                            <input type="text" id="new-item-name" 
+                                   class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                                   placeholder="Ex: Açaí Especial, Morango, Leite em Pó...">
+                        </div>
+
+                        <!-- Preço -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Preço (R$) *</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-semibold">R$</span>
+                                <input type="number" step="0.01" id="new-item-price" 
+                                       class="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                                       placeholder="0,00">
+                            </div>
+                        </div>
+
+                        <!-- Tamanho (apenas para opções prontas) -->
+                        <div id="new-item-size-field" class="hidden">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Tamanho</label>
+                            <select id="new-item-size" 
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                                <option value="300ml">300ml</option>
+                                <option value="500ml" selected>500ml</option>
+                                <option value="700ml">700ml</option>
+                                <option value="750ml">750ml</option>
+                            </select>
+                        </div>
+
+                        <!-- Quantidade de Itens (apenas para combos) -->
+                        <div id="new-item-items-field" class="hidden">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Quantidade de Itens no Combo</label>
+                            <input type="number" id="new-item-items" 
+                                   class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                                   placeholder="Ex: 2, 3, 4..." value="2" min="1">
+                        </div>
+
+                        <!-- Estoque -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Estoque Inicial</label>
+                            <select id="new-item-stock" 
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                                <option value="unlimited" selected>Ilimitado</option>
+                                <option value="100">100 unidades</option>
+                                <option value="50">50 unidades</option>
+                                <option value="30">30 unidades</option>
+                                <option value="20">20 unidades</option>
+                                <option value="10">10 unidades</option>
+                            </select>
+                        </div>
+
+                        <!-- Status -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Status Inicial</label>
+                            <div class="flex items-center gap-3">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="new-item-active" checked class="sr-only peer">
+                                    <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                </label>
+                                <span class="text-sm font-medium text-gray-700">Item ativo (disponível para venda)</span>
+                            </div>
+                        </div>
+
+                        <!-- Descrição (opcional) -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Descrição (opcional)</label>
+                            <textarea id="new-item-description" rows="3"
+                                      class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                                      placeholder="Descrição adicional do item..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="p-6 border-t border-gray-200 bg-gray-50 rounded-b-2xl">
+                    <div class="flex gap-3 justify-end">
+                        <button onclick="closeAddItemModal()" 
+                                class="px-6 py-3 bg-gray-500 text-white rounded-xl hover:bg-gray-600 transition-all font-bold shadow-md hover:shadow-lg">
+                            Cancelar
+                        </button>
+                        <button onclick="saveNewItem()" 
+                                class="px-6 py-3 bg-green-500 text-white rounded-xl hover:bg-green-600 transition-all font-bold shadow-md hover:shadow-lg">
+                            Adicionar Item
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="scriptJs/controle.js"></script>
 </body>
+
 </html>
